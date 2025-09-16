@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌌 Universal Search Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowText 3s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #ff00cc, 0 0 20px #3333ff; }
+      to { text-shadow: 0 0 20px #00ffcc, 0 0 40px #ff00cc; }
+    }
+
+    .search-box {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      width: 90%;
+      max-width: 600px;
+    }
+
+    input, select, button {
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      margin: 8px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    input {
+      width: 55%;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    select {
+      width: 25%;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button {
+      background: linear-gradient(135deg, #ff00cc, #3333ff, #00ffcc);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      width: 15%;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff00cc, 0 0 30px #3333ff;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #ddd;
+      opacity: 0.8;
+    }
+
+    /* Animated background stars */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: moveStars 200s linear infinite;
+    }
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 5000px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+
+  <h1>🌌 Universal Search Portal</h1>
+  <div class="search-box">
+    <form id="searchForm">
+      <input type="text" id="query" placeholder="Search the universe..." required>
+      <select id="engine">
+        <option value="google">Google 🌐</option>
+        <option value="youtube">YouTube ▶️</option>
+        <option value="wikipedia">Wikipedia 📚</option>
+        <option value="news">News 📰</option>
+        <option value="maps">Google Maps 🗺️</option>
+        <option value="reddit">Reddit 👽</option>
+        <option value="tiktok">TikTok 🎵</option>
+        <option value="twitter">Twitter/X 🐦</option>
+        <option value="instagram">Instagram 📷</option>
+        <option value="amazon">Amazon 🛒</option>
+        <option value="spotify">Spotify 🎶</option>
+        <option value="github">GitHub 💻</option>
+        <option value="stackoverflow">StackOverflow 💡</option>
+        <option value="pinterest">Pinterest 📌</option>
+        <option value="linkedin">LinkedIn 💼</option>
+        <option value="facebook">Facebook 👍</option>
+      </select>
+      <button type="submit">Go</button>
+    </form>
+  </div>
+
+  <footer>
+    🚀 Explore everything, everywhere, all at once 🌍✨
+  </footer>
+
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const query = document.getElementById("query").value;
+      const engine = document.getElementById("engine").value;
+      let url = "";
+
+      switch(engine) {
+        case "google": url = `https://www.google.com/search?q=${encodeURIComponent(query)}`; break;
+        case "youtube": url = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`; break;
+        case "wikipedia": url = `https://en.wikipedia.org/wiki/${encodeURIComponent(query)}`; break;
+        case "news": url = `https://news.google.com/search?q=${encodeURIComponent(query)}`; break;
+        case "maps": url = `https://www.google.com/maps/search/${encodeURIComponent(query)}`; break;
+        case "reddit": url = `https://www.reddit.com/search/?q=${encodeURIComponent(query)}`; break;
+        case "tiktok": url = `https://www.tiktok.com/search?q=${encodeURIComponent(query)}`; break;
+        case "twitter": url = `https://twitter.com/search?q=${encodeURIComponent(query)}`; break;
+        case "instagram": url = `https://www.instagram.com/explore/tags/${encodeURIComponent(query)}`; break;
+        case "amazon": url = `https://www.amazon.com/s?k=${encodeURIComponent(query)}`; break;
+        case "spotify": url = `https://open.spotify.com/search/${encodeURIComponent(query)}`; break;
+        case "github": url = `https://github.com/search?q=${encodeURIComponent(query)}`; break;
+        case "stackoverflow": url = `https://stackoverflow.com/search?q=${encodeURIComponent(query)}`; break;
+        case "pinterest": url = `https://www.pinterest.com/search/pins/?q=${encodeURIComponent(query)}`; break;
+        case "linkedin": url = `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(query)}`; break;
+        case "facebook": url = `https://www.facebook.com/search/top/?q=${encodeURIComponent(query)}`; break;
+      }
+
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
